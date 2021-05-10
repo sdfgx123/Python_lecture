@@ -1,0 +1,1 @@
+print('This line is made for testing git repository.')
