@@ -1,12 +1,10 @@
-# 재귀함수를 이용한 이진수 출력
+# 재귀함수와 스택 선수지식
 import sys
 sys.stdin=open("C:\Python-lecture\Python_lecture\section_6\input.txt", "rt")
 def DFS(x):
-    if x==0:
-        return
-    else:
-        DFS(x//2)
-        print(x%2, end=' ')
+    if x>0:
+        DFS(x-1)
+        print(x, end=' ')
 
 if __name__=="__main__":
     n=int(input())
