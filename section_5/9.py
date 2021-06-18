@@ -35,3 +35,25 @@ for x in a:
         break
 else:
     print("YES")
+
+# 추가 강의 : C++ 풀듯이 풀어 본다고 함, 아스키 넘버 이용해서
+str1=[0]*52
+str2=[0]*52
+for x in a:
+    if x.isupper():
+        # ord 함수 : 문자를 아스키 넘버로 변환해줌
+        str1[ord(x)-65]+=1 # 대문자 이므로 65를 빼준다
+    else:
+        str1[ord(x)-71]+=1
+for x in a:
+    if x.isupper():
+        # ord 함수 : 문자를 아스키 넘버로 변환해줌
+        str2[ord(x)-65]+=1 # 대문자 이므로 65를 빼준다
+    else:
+        str2[ord(x)-71]+=1
+for i in range(52):
+    if str1[i]!=str2[i]:
+        print("NO")
+        break
+else:
+    print("YES")
