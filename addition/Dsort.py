@@ -13,6 +13,7 @@ def Dsort(lt, rt):
                 p1+=1
             # p2 쪽이 더 작다
             else:
+                
                 tmp.append(arr[p2])
                 p2+=1
         # p1 쪽이 다 안 들어가고 남음
