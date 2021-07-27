@@ -18,6 +18,7 @@ def Dsort(lt, rt):
                 p2+=1
         # p1 쪽이 다 안 들어가고 남음
         if p1<=mid:
+            
             # 왼쪽 절반을 tmp에 다 넣어 버려야 함
             tmp=tmp+arr[p1:mid+1]
         if p2<=rt: tmp=tmp+arr[p2:rt+1]
