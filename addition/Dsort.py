@@ -1,4 +1,4 @@
-# 병합정렬,
+# 병합정렬
 def Dsort(lt, rt):
     if lt<rt:
         mid=(lt+rt)//2
