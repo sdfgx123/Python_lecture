@@ -1,7 +1,12 @@
-import sys
+def solution(n):
+    global sum
+    for i in range(1, n+1):
+        if n%i==0:
+            sum+=i
+    answer=sum
+    return answer
+
 n=int(input())
-a=[]
-for i in range(n):
-    a.append(int(sys.stdin.readline()))
-for i in sorted(a):
-    sys.stdout.write(str(i)+'\n')
+sum=0
+sum=solution(n)
+print(sum)
