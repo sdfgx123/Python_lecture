@@ -1,5 +1,4 @@
-n=int(input())
-arr=[]
-for _ in range(n):
-    arr.append(int(input()))
-print(arr)
+n, k=map(int, input().split())
+a=list(map(int, input().split()))
+a.sort()
+print(a[-3])
