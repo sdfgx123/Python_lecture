@@ -1,11 +1,4 @@
-n=int(input())
-arr=[]
-for i in range(n):
-    x, y=map(int, input().split())
-    arr.append(x, y)
-for i in arr:
-    rank=1
-    for j in arr:
-        if i[0]<j[0] and i[1]<j[1]:
-            rank+=1
-    print(rank, end=' ')
+a=['black', 'brown', 'red', 'orange', 'yellow', 'green', 'blue', 'violet', 'grey', 'white']
+x, y, z=[input() for i in range(3)]
+res=(((a.index(x)*10)+a.index(y))*(10**a.index(z)))
+print(res)
