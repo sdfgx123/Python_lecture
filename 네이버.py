@@ -1,3 +1,4 @@
+from re import A
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
@@ -35,4 +36,22 @@ for book_page_url in (book_page_urls):
     #print('^MA_TITLE:'+title,'^MA_DESC:'+text,'^DDJ:'+author,'^REG_DATE:'+date,sep='\n')
     print("^[text:", text)
 
+
+url = "http://tvdaily.asiae.co.kr/section.html?section=2&page=1"
+
+driver.get(url)
+crObject = BeautifulSoup(driver.page_source, 'html.parser')
+
+news_urls = []
+for a in crObject.find_all('a', href=True, attrs={'class':'secttl'}):
+    link = "http://tvdaily.asiae.co.kr" + a['href']
+    news_urls.append(link)
+
+for news_url in (news_urls):
+
+    driver.get(book_page_url)
+    crObject = BeautifulSoup(driver.page_source, 'html.parser')
+
+    title = crObject.find('meta', {'property':'og:title'}).get('content')
+    print("뉴스 타이틀:", title)
 
