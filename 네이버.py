@@ -29,6 +29,10 @@ for book_page_url in (book_page_urls):
     title = crObject.find('meta', {'property':'og:title'}).get('content')
     author = crObject.find('dt', text='저자').find_next_siblings('dd')[0].text.strip()
     date = crObject.find('dt', text='출판일').find_next_siblings('dd')[0].text.strip()
-    text = crObject.find('meta', {'property':'og:description'}).get('content')
+    #text = crObject.find('meta', {'property':'og:description'}).get('content')
+    text = crObject.find('div', {'id':'bookIntroContent'}).find('p').text.strip()
 
-    print('^MA_TITLE:'+title,'^MA_DESC:'+text,'^DDJ:'+author,'^REG_DATE:'+date,sep='\n')
+    #print('^MA_TITLE:'+title,'^MA_DESC:'+text,'^DDJ:'+author,'^REG_DATE:'+date,sep='\n')
+    print("^[text:", text)
+
+
