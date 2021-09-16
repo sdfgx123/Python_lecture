@@ -35,8 +35,6 @@ try:
         author = crObject.find('dt', text='저자').find_next_siblings('dd')[0].text.strip()
         date = crObject.find('dt', text='출판일').find_next_siblings('dd')[0].text.strip()
         text = crObject.find('div', {'id':'bookIntroContent'}).find('p').text.strip()
-        #print('^MA_TITLE:'+title,'^MA_DESC:'+text,'^DDJ:'+author,'^REG_DATE:'+date,sep='\n')
-        #f.write('^MA_TITLE:'+title,'^MA_DESC:'+text,'^DDJ:'+author,'^REG_DATE:'+date,sep='\n')
         f.write('^MA_TITLE:'+title+'\n')
         f.write('^MA_DESC:'+text+'\n')
         f.write('^DDJ:'+author+'\n')
@@ -51,9 +49,7 @@ try:
     segye_urls = []
     for a in crObject.find_all('a', href=True, attrs={'target':'_self'}):
         link = "https://www.segye.com" + a['href']
-        type(link)
         segye_urls.append(link)
-        print(link)
 
     for segye_url in (segye_urls):
 
@@ -64,11 +60,6 @@ try:
         author = crObject.find('meta', {'property':'dd:author'}).get('content')
         date = crObject.find('meta', {'property':'article:published_time'}).get('content')
         text = crObject.find('article', {'class':'viewBox'}).find('p').text.strip()
-        #date = crObject.find('meta', {'property':'article:published_time'}).get('content')
-        #author = re.findall('^[.+?:',crObject.find('meta', {'property':'og:description'}).get('content'))
-        #print("뉴스 타이틀:", title)
-        #print("title:", title)
-        #f.write('^MA_TITLE:'+title,'^MA_DESC:'+text,'^DDJ:'+author,'^REG_DATE:'+date,sep='\n')
         f.write('^MA_TITLE:'+title+'\n')
         f.write('^MA_DESC:'+text+'\n')
         f.write('^DDJ:'+author+'\n')
@@ -96,7 +87,6 @@ try:
         author = crObject.find('meta', {'property':'article:author'}).get('content')
         date = crObject.find('meta', {'property':'article:published_time'}).get('content')
         text = crObject.find('article', {'class':'story-news article'}).find('p').text.strip()
-        #f.write('^MA_TITLE:'+title,'^MA_DESC:'+text,'^DDJ:'+author,'^REG_DATE:'+date,sep='\n')
         f.write('^MA_TITLE:'+title+'\n')
         f.write('^MA_DESC:'+text+'\n')
         f.write('^DDJ:'+author+'\n')
