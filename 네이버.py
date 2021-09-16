@@ -1,4 +1,4 @@
-from re import A
+import re
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
@@ -33,25 +33,58 @@ for book_page_url in (book_page_urls):
     #text = crObject.find('meta', {'property':'og:description'}).get('content')
     text = crObject.find('div', {'id':'bookIntroContent'}).find('p').text.strip()
 
-    #print('^MA_TITLE:'+title,'^MA_DESC:'+text,'^DDJ:'+author,'^REG_DATE:'+date,sep='\n')
-    print("^[text:", text)
+    print('^MA_TITLE:'+title,'^MA_DESC:'+text,'^DDJ:'+author,'^REG_DATE:'+date,sep='\n')
+    #print("^[text:", text)
 
 
+# tv데일리
 url = "http://tvdaily.asiae.co.kr/section.html?section=2&page=1"
 
 driver.get(url)
 crObject = BeautifulSoup(driver.page_source, 'html.parser')
 
-news_urls = []
+daily_urls = []
 for a in crObject.find_all('a', href=True, attrs={'class':'secttl'}):
     link = "http://tvdaily.asiae.co.kr" + a['href']
-    news_urls.append(link)
+    type(link)
+    daily_urls.append(link)
+    print(link)
 
-for news_url in (news_urls):
+for daily_url in (daily_urls):
 
-    driver.get(book_page_url)
+    driver.get(daily_url)
     crObject = BeautifulSoup(driver.page_source, 'html.parser')
 
     title = crObject.find('meta', {'property':'og:title'}).get('content')
-    print("뉴스 타이틀:", title)
+    date = crObject.find('meta', {'property':'article:published_time'}).get('content')
+    #author = re.findall('^[.+?:',crObject.find('meta', {'property':'og:description'}).get('content'))
+    #print("뉴스 타이틀:", title)
 
+    """ import re
+    x = 'From: Using the : character'
+    y = re.findall('^F.+?:', x)
+    print(y) # ['From:'] """
+
+# 연합뉴스
+url = "https://www.yna.co.kr/economy/finance?site=navi_economy_depth02"
+
+driver.get(url)
+crObject = BeautifulSoup(driver.page_source, 'html.parser')
+
+yna_urls = []
+for a in crObject.find_all('a', href=True, attrs={'class':'tit-wrap'}):
+    link = "https:" + a['href']
+    yna_urls.append(link)
+    print(link)
+
+for yna_url in (yna_urls):
+
+    driver.get(yna_url)
+    crObject = BeautifulSoup(driver.page_source, 'html.parser')
+
+    title = crObject.find('meta', {'property':'og:title'}).get('content')[:-7]
+    author = crObject.find('meta', {'property':'article:author'}).get('content')
+    date = crObject.find('meta', {'property':'article:published_time'}).get('content')
+    content = crObject.select('article.story-news p')
+
+    print('^MA_TITLE:'+title,'^MA_DESC:'+content,'^DDJ:'+author,'^REG_DATE:'+date,sep='\n')
