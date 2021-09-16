@@ -19,7 +19,6 @@ yna_urls = []
 for a in crObject.find_all('a', href=True, attrs={'class':'tit-wrap'}):
     link = "https:" + a['href']
     yna_urls.append(link)
-    print(link)
 
 for yna_url in (yna_urls):
 
@@ -29,6 +28,11 @@ for yna_url in (yna_urls):
     title = crObject.find('meta', {'property':'og:title'}).get('content')[:-7]
     author = crObject.find('meta', {'property':'article:author'}).get('content')
     date = crObject.find('meta', {'property':'article:published_time'}).get('content')
-    content = crObject.select('article.story-news article > p')[0].get_text()
+    text = crObject.find('article', {'class':'story-news article'}).find('p').text.strip()
+    #f.write('^MA_TITLE:'+title,'^MA_DESC:'+text,'^DDJ:'+author,'^REG_DATE:'+date,sep='\n')
+    """ f.write('^MA_TITLE:'+title+'\n')
+    f.write('^MA_DESC:'+text+'\n')
+    f.write('^DDJ:'+author+'\n')
+    f.write('^REG_DATE:'+date+'\n') """
 
-    print('^MA_TITLE:'+title,'^MA_DESC:'+content,'^DDJ:'+author,'^REG_DATE:'+date,sep='\n')
+    print('^MA_TITLE:'+title,'^MA_DESC:'+text,'^DDJ:'+author,'^REG_DATE:'+date,sep='\n')
