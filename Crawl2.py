@@ -23,6 +23,17 @@ for title in titles:
 
 print(soup.select('div.sub_read_list_box > dl > dt > a')[0]['href']) # 기사 링크
 
+coin_urls = []
 links = soup.select('div.sub_read_list_box > dl > dt > a')
 for link in links:
     print(link['href'])
+    coin_urls.append("https://www.coinreaders.com" + link['href'])
+print(coin_urls)
+
+for coin_url in (coin_urls):
+    url = coin_url
+    res=requests.get(url)
+    soup=BeautifulSoup(res.content, "lxml")
+    print(soup.select('div.article_head > h1').text)
+    #title = soup.select('div.article_head > h1')
+    #print(title.text)
