@@ -6,6 +6,7 @@ from urllib import parse
 import sys
 
 # 오마이뉴스 > 코인리더스 > 데일리안 순서
+print("Web Crawling start")
 
 # 오마이뉴스 구역
 oh_urls = []
@@ -34,6 +35,7 @@ for oh_url in (oh_urls):
     f.write('^DDJ:' + author + '\n')
     f.write('^REG_DATE:' + date + '\n')
     f.write('^MA_DESC:' + content + '\n')
+print("Oh-my news done")
 
 # 코인리더스 구역
 coin_urls = []
@@ -67,6 +69,7 @@ for coin_url in (coin_urls):
     f.write('^DDJ:' + author + '\n')
     f.write('^REG_DATE:' + date + '\n')
     f.write('^MA_DESC:' + content.text + '\n')
+print("coin readers done")
     
 # 데일리안 구역
 daily_urls = []
@@ -92,5 +95,6 @@ for daily_url in (daily_urls):
     f.write('^DDJ:' + author.text + '\n')
     f.write('^REG_DATE:' + date + '\n')
     f.write('^MA_DESC:' + content + '\n')
+print("daily ahn done")
 
 print("done")
