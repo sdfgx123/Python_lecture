@@ -11,7 +11,7 @@ print("Web Crawling start")
 # 오마이뉴스 구역
 oh_urls = []
 #filepath = "../../../_INDEXDB/set2/WEB/dat/"
-f=open("./../../../_INDEXDB/set2/WEB/dat/result.scd", 'w', encoding="UTF-8")
+f=open("F:/EXOD/_INDEXDB/set2/WEB/dat/result.scd", 'w', encoding="UTF-8")
 
 for i in range(1, 4):
     url = "http://www.ohmynews.com/NWS_Web/Articlepage/Total_Article.aspx?PAGE_CD=C0300&pageno=" + str(i)
