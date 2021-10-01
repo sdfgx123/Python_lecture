@@ -4,6 +4,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
 from urllib import parse
 import sys
+import os
 
 # 오마이뉴스 > 코인리더스 > 데일리안 순서
 print("Web Crawling start")
@@ -13,8 +14,10 @@ oh_urls = []
 # filepath = "../../../_INDEXDB/set2/WEB/dat/"
 # scd_path = sys.argv(1)
 # print("scd path : " + scd_path)
-file_path = sys.argv[1]
-f=open(file_path + "/result.scd", 'w', encoding="UTF-8")
+# file_path = sys.argv[1].replace(':', ':/')
+file_path = sys.argv[1][:-3]
+print("file path : " + file_path)
+f=open(file_path + '/result.scd', 'w', encoding='UTF-8')
 #f=open("C:/awsKey/result.scd", 'w', encoding="UTF-8")
 
 for i in range(1, 4):
